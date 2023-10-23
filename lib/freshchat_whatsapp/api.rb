@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "freshchat_whatsapp/actions/send_message"
+require 'freshchat_whatsapp/actions/send_message'
 
 module FreshchatWhatsapp
   class Api
@@ -8,13 +8,11 @@ module FreshchatWhatsapp
       @base_path = FreshchatWhatsapp.configuration.base_path
     end
 
-  
-
-    def send_message(username, body)
+    def send_message(_username, body)
       Actions::SendMessage.new(client, body).call
     end
 
-    def send_hsm_message(username, namespace, element_name, language, params)
+    def send_hsm_message(_username, namespace, element_name, language, params)
       Actions::SendHsmMessage.new(
         client,
         namespace,

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module FreshchatWhatsapp
   class Client
     def initialize(token = nil, token_type = :bearer)
@@ -13,7 +14,9 @@ module FreshchatWhatsapp
       conn = Faraday.new(url: full_path, headers: headers)
       response = conn.post { |request| request.body = body(payload) }
 
-      raise FreshchatWhatsapp::Errors::RequestError.new("FreshchatWhatsapp API request error.", response) unless response.success?
+      unless response.success?
+        raise FreshchatWhatsapp::Errors::RequestError.new('FreshchatWhatsapp API request error.', response)
+      end
 
       JSON.parse(response.body)
     end
@@ -25,15 +28,14 @@ module FreshchatWhatsapp
     def token_name
       case token_type
       when :bearer
-        "Bearer"
+        'Bearer'
       end
     end
 
-   
     def headers
       {
-        "Authorization" => "#{token_name} #{token}",
-        "Content-Type" => "application/json",
+        'Authorization' => "#{token_name} #{token}",
+        'Content-Type' => 'application/json'
       }
     end
 

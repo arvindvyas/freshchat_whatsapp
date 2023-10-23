@@ -1,4 +1,4 @@
-require "freshchat_whatsapp/version"
+require 'freshchat_whatsapp/version'
 
 module FreshchatWhatsapp
   class Error < StandardError; end

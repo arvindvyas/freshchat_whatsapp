@@ -3,7 +3,6 @@
 module FreshchatWhatsapp
   module Actions
     class SendHsmMessage
-      
     end
   end
 end
