@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'freshchat_whatsapp/actions/send_message'
+require 'freshchat_whatsapp/actions/send_hsm_message'
+
 
 module FreshchatWhatsapp
   class Api
@@ -12,11 +13,12 @@ module FreshchatWhatsapp
       Actions::SendMessage.new(client, body).call
     end
 
-    def send_hsm_message(_username, namespace, element_name, language, params)
+    def send_hsm_message(phone_number, namespace, template_name, language, params)
       Actions::SendHsmMessage.new(
         client,
+        phone_number,
         namespace,
-        element_name,
+        template_name,
         language,
         params
       ).call
@@ -27,7 +29,9 @@ module FreshchatWhatsapp
     attr_reader :base_path
 
     def client
-      @client ||= FreshchatWhatsapp::Client.new
+      puts "I am calling by app"
+      @client = FreshchatWhatsapp::Client.new
     end
   end
 end
+
