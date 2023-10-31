@@ -2,13 +2,11 @@
 
 module FreshchatWhatsapp
   class Client
-    def initialize(token = nil, token_type = :bearer)
+    def initialize(_token = nil, token_type = :bearer)
       @base_path = FreshchatWhatsapp.configuration.base_path
-      @token =  FreshchatWhatsapp.configuration.api_key
+      @token = FreshchatWhatsapp.configuration.api_key
       @token_type = token_type
     end
-
-    
 
     def request(path, payload = nil)
       full_path = "#{base_path}#{path}"
@@ -42,7 +40,7 @@ module FreshchatWhatsapp
     end
 
     def body(payload)
-      payload && payload.to_json
+      payload&.to_json
     end
   end
 end

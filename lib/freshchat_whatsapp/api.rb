@@ -2,7 +2,6 @@
 
 require 'freshchat_whatsapp/actions/send_hsm_message'
 
-
 module FreshchatWhatsapp
   class Api
     def initialize
@@ -29,9 +28,7 @@ module FreshchatWhatsapp
     attr_reader :base_path
 
     def client
-      puts "I am calling by app"
       @client = FreshchatWhatsapp::Client.new
     end
   end
 end
-

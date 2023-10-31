@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/freshchat_whatsapp/version'
 
 Gem::Specification.new do |spec|
@@ -28,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'faraday', '>= 2.0', '< 3'
+  spec.add_development_dependency 'pry-byebug', '~> 3.6'
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency "pry-byebug",                "~> 3.6"
 end
