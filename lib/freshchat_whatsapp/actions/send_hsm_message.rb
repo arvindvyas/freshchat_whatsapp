@@ -5,7 +5,8 @@ module FreshchatWhatsapp
     class SendHsmMessage
       PATH = '/v2/outbound-messages/whatsapp'
 
-      def initialize(client, wtsapp_phone_number, namespace, template_name, language, params)
+      def initialize(client,from_number, wtsapp_phone_number, namespace, template_name, language, params)
+        @from_number = from_number
         @phone_number = wtsapp_phone_number
         @namespace = namespace
         @template_name = template_name
