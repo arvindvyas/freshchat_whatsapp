@@ -10,12 +10,11 @@ module FreshchatWhatsapp
 
     def request(path, payload = nil)
       full_path = "#{base_path}#{path}"
-
       conn = Faraday.new(url: full_path, headers: headers)
       response = conn.post { |request| request.body = body(payload) }
 
       unless response.success?
-        raise FreshchatWhatsapp::Errors::RequestError.new('FreshchatWhatsapp API request error.', response)
+        raise FreshchatWhatsapp::Errors::RequestError.new('FreshchatWhatsapp API request error.', response.body)
       end
 
       JSON.parse(response.body)
