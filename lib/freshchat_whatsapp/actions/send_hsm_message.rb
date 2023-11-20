@@ -5,7 +5,7 @@ module FreshchatWhatsapp
     class SendHsmMessage
       PATH = '/v2/outbound-messages/whatsapp'
 
-      def initialize(client,from_number, wtsapp_phone_number, namespace, template_name, language, params)
+      def initialize(client, from_number, wtsapp_phone_number, namespace, template_name, language, params)
         @from_number = from_number
         @phone_number = wtsapp_phone_number
         @namespace = namespace
@@ -41,27 +41,12 @@ module FreshchatWhatsapp
               'language': {
                 'policy': 'deterministic',
                 'code': 'en'
-              },
-              'rich_template_data': {
-                'button': {
-                  'subType': 'url',
-                  'params': [
-                    {
-                      'data': params[:url]
-                    }
-                  ]
-                },
-                'body': {
-                  'params': [
-                    {
-                      'data': params[:name]
-                    }
-                  ]
-                }
               }
             }
           }
         }
+
+        payload[:data][:message_template].merge!(params)
         payload
       end
     end

@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 require 'freshchat_whatsapp/actions/send_hsm_message'
+require 'freshchat_whatsapp/actions/check_message_status'
 
 module FreshchatWhatsapp
   class Api
-    def initialize(from_number)
+    def initialize
       @base_path = FreshchatWhatsapp.configuration.base_path
-      @from_number = from_number
     end
 
-    def send_hsm_message(phone_number, namespace, template_name, language, params)
+    def send_hsm_message(from_number, to_number, namespace, template_name, language, params)
       Actions::SendHsmMessage.new(
         client,
         from_number,
-        phone_number,
+        to_number,
         namespace,
         template_name,
         language,
@@ -21,9 +21,16 @@ module FreshchatWhatsapp
       ).call
     end
 
+    def check_message_status(request_id)
+      Actions::CheckMessageStatus.new(
+        client,
+        request_id
+      ).call
+    end
+
     private
 
-    attr_reader :base_path, :from_number
+    attr_reader :base_path
 
     def client
       @client = FreshchatWhatsapp::Client.new

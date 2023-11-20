@@ -20,6 +20,18 @@ module FreshchatWhatsapp
       JSON.parse(response.body)
     end
 
+    def get_request(path, payload = nil)
+      full_path = "#{base_path}#{path}"
+      conn = Faraday.new(url: full_path, headers: headers)
+      response = conn.get { |request| request.body = body(payload) }
+
+      unless response.success?
+        raise FreshchatWhatsapp::Errors::RequestError.new('FreshchatWhatsapp API request error.', response.body)
+      end
+
+      JSON.parse(response.body)
+    end
+
     private
 
     attr_reader :base_path, :token, :token_type
