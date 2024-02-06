@@ -40,7 +40,7 @@ module FreshchatWhatsapp
               'template_name': @template_name,
               'language': {
                 'policy': 'deterministic',
-                'code': 'en'
+                'code': @language
               }
             }
           }
