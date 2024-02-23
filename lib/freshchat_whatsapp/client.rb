@@ -2,7 +2,7 @@
 
 module FreshchatWhatsapp
   class Client
-    def initialize(base_path=nil, token=nil, batoken_type = :bearer)
+    def initialize(base_path=nil, token=nil, token_type = :bearer)
       @base_path = base_path ||  FreshchatWhatsapp.configuration.base_path
       @token = token || FreshchatWhatsapp.configuration.api_key
       @token_type = token_type
